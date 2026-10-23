@@ -143,7 +143,7 @@ body, html {
 .figma-post-wrapper {
 	background-color: #E6E8E3;
 	min-height: 100vh;
-	padding: 40px 0 30px 0;
+	padding: 40px 0 60px 0;
 	display: flex;
 	justify-content: center;
 	font-family: 'Inter', sans-serif;
@@ -167,13 +167,9 @@ body, html {
 	width: 100%;
 	justify-self: start;
 	position: sticky;
-	top: 120px; /* Accounts for sticky header height */
-	max-height: calc(100vh - 140px); /* Ensures it never goes off bottom of screen */
-	overflow-y: auto;
-	scrollbar-width: none; /* Firefox */
-}
-.figma-sidebar::-webkit-scrollbar {
-	display: none; /* Safari/Chrome */
+	top: 100px; /* Accounts for sticky header height */
+	display: flex;
+	flex-direction: column;
 }
 
 /* Right Sidebar */
@@ -357,8 +353,8 @@ body, html {
 
 /* Scrollable TOC List */
 .figma-toc-box .tcc-toc-list {
-	max-height: calc(100vh - 500px); /* Dynamically scales down on small laptops */
-	min-height: 150px;
+	max-height: calc(100vh - 420px); /* Dynamically scales down on small laptops */
+	min-height: 50px;
 	overflow-y: auto;
 	padding-right: 10px !important;
 	
@@ -381,25 +377,43 @@ body, html {
 	display: flex;
 	align-items: center;
 	gap: 15px;
-	padding: 0 10px;
+	padding: 16px 10px;
+	flex-shrink: 0;
 }
 .figma-share-text {
-	font-size: 16px;
-	color: #666;
+	font-size: 14px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #555;
 }
 .figma-share-icons {
 	display: flex;
-	gap: 10px;
+	gap: 12px;
+	align-items: center;
+}
+.figma-share-icons a,
+.figma-share-icons button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #888;
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	line-height: 1;
+	transition: color 0.2s ease, transform 0.2s ease;
+}
+.figma-share-icons a:hover,
+.figma-share-icons button:hover {
+	color: #235F6A;
+	transform: scale(1.15);
 }
 .figma-share-icons svg {
 	width: 20px;
 	height: 20px;
-	fill: #A0A0A0;
-	cursor: pointer;
-	transition: fill 0.2s ease;
-}
-.figma-share-icons svg:hover {
-	fill: #000;
+	fill: currentColor;
 }
 
 /* Main Content area */
@@ -962,11 +976,17 @@ body, html {
 				<span class="figma-share-text">Share</span>
 				<div class="figma-share-icons">
 					<!-- Facebook -->
-					<svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode( get_permalink() ); ?>" target="_blank" rel="noopener noreferrer" title="Share on Facebook">
+						<svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.597 1.323-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg>
+					</a>
 					<!-- Pinterest -->
-					<svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.951-7.252 4.195 0 7.451 2.991 7.451 6.986 0 4.175-2.632 7.533-6.284 7.533-1.228 0-2.383-.638-2.775-1.391l-.756 2.878c-.274 1.042-1.022 2.348-1.523 3.141 1.198.37 2.469.569 3.784.569 6.621 0 11.988-5.367 11.988-11.987C24.004 5.367 18.638 0 12.017 0z"/></svg>
+					<a href="https://pinterest.com/pin/create/button/?url=<?php echo urlencode( get_permalink() ); ?>&media=<?php echo urlencode( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ); ?>&description=<?php echo urlencode( get_the_title() ); ?>" target="_blank" rel="noopener noreferrer" title="Share on Pinterest">
+						<svg viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.951-7.252 4.195 0 7.451 2.991 7.451 6.986 0 4.175-2.632 7.533-6.284 7.533-1.228 0-2.383-.638-2.775-1.391l-.756 2.878c-.274 1.042-1.022 2.348-1.523 3.141 1.198.37 2.469.569 3.784.569 6.621 0 11.988-5.367 11.988-11.987C24.004 5.367 18.638 0 12.017 0z"/></svg>
+					</a>
 					<!-- Link -->
-					<svg viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42z"/></svg>
+					<button type="button" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');" title="Copy Link">
+						<svg viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42z"/></svg>
+					</button>
 				</div>
 			</div>
 		</aside>
