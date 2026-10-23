@@ -143,7 +143,7 @@ body, html {
 .figma-post-wrapper {
 	background-color: #E6E8E3;
 	min-height: 100vh;
-	padding: 40px 20px 30px 20px;
+	padding: 40px 0 30px 0;
 	display: flex;
 	justify-content: center;
 	font-family: 'Inter', sans-serif;
@@ -152,11 +152,11 @@ body, html {
 /* Grid container for perfectly centered content */
 .figma-layout-grid {
 	display: grid;
-	grid-template-columns: 336px minmax(auto, 640px) 336px;
+	grid-template-columns: 240px minmax(auto, 640px) 240px;
 	justify-content: space-between;
 	gap: 40px;
 	width: 100%;
-	max-width: 1400px;
+	max-width: 1240px;
 	padding: 0 1rem;
 	margin: 0 auto;
 	align-items: start;
@@ -187,7 +187,7 @@ body, html {
 }
 .tcc-newsletter-widget {
 	background-color: #c9d7d1;
-	padding: 35px 30px;
+	padding: 35px 20px;
 	text-align: center;
 	font-family: 'Inter', sans-serif;
 	color: #222;
@@ -539,9 +539,9 @@ body, html {
 	display: none !important;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1240px) {
 	.figma-layout-grid {
-		grid-template-columns: 336px minmax(auto, 640px);
+		grid-template-columns: 240px minmax(auto, 640px);
 		justify-content: center;
 	}
 	.figma-right-sidebar {
@@ -566,7 +566,7 @@ body, html {
 
 @media (max-width: 768px) {
 	.figma-post-wrapper {
-		padding: 20px 15px;
+		padding: 20px 0;
 	}
 	.figma-post-title {
 		font-size: 32px;
